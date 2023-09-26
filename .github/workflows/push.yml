@@ -22,9 +22,9 @@ jobs:
         steps:
             - shell: bash
               env:
-                shuai_secret: ${{ secrets.SHUAI_ENV_SECRET}}
+                shuai_secret: ${{ secrets.SHUAI_ENV_SECRET }}
               run: |
-                echo "${shuai_secret}"
+                echo $shuai_secret
         # steps:
         #   - name: test1
         #     uses: actions/setup-dotnet@v3
