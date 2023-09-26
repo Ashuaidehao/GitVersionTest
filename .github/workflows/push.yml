@@ -22,7 +22,7 @@ jobs:
         steps:
             - shell: bash
               env:
-                shuai_secret: ${{ secret.ShuaiSecret}}
+                shuai_secret: ${{ secret.SHUAI_ENV_SECRET}}
               run: |
                 echo "$shuai_secret"
         # steps:
