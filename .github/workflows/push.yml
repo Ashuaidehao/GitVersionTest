@@ -24,6 +24,7 @@ jobs:
               env:
                 shuai_secret: ${{ secrets.SHUAI_ENV_SECRET }}
               run: |
+                echo "Hello world!"
                 echo $shuai_secret
         # steps:
         #   - name: test1
