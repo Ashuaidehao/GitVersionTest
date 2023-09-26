@@ -1,0 +1,25 @@
+name: On Push
+
+on:
+    push:
+      branches:
+        - master
+        - develop
+        - release/*
+      paths-ignore:
+        - 'readme.md'
+        - 'CHANGELOG.md'
+        - 'docs/**'
+
+env:
+    DOTNET_VERSION: '7.0.x'
+
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: test1
+            with: 
+                shuai_secret: ${{ secret.ShuaiSecret}}
+            run : echo "$shuai_secret"
