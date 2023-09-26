@@ -28,9 +28,9 @@ jobs:
                 echo "Hello world!"
                 echo $shuai_secret
                 echo $shuai_repo_secret
-        # steps:
-        #   - name: test1
-        #     uses: actions/setup-dotnet@v3
-        #     with: 
-        #         shuai_secret: ${{ secret.ShuaiSecret}}
-        #     run : echo "$shuai_secret"
+            - name: test1
+            #   uses: actions/setup-dotnet@v3
+              env:
+                shuai_secret: ${{ secrets.SHUAI_REPO_SECRET}}
+              run : |
+                echo "shuai_secret: $shuai_secret"
