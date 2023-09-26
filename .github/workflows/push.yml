@@ -19,7 +19,14 @@ jobs:
     test:
         runs-on: ubuntu-latest
         steps:
-            - name: test1
-            with: 
+            - shell: bash
+              env:
                 shuai_secret: ${{ secret.ShuaiSecret}}
-            run : echo "$shuai_secret"
+              run: |
+                echo "$shuai_secret"
+        # steps:
+        #   - name: test1
+        #     uses: actions/setup-dotnet@v3
+        #     with: 
+        #         shuai_secret: ${{ secret.ShuaiSecret}}
+        #     run : echo "$shuai_secret"
