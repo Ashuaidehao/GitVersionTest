@@ -23,9 +23,11 @@ jobs:
             - shell: bash
               env:
                 shuai_secret: ${{ secrets.SHUAI_ENV_SECRET }}
+                shuai_repo_secret: ${{ secrets.SHUAI_REPO_SECRET }}
               run: |
                 echo "Hello world!"
                 echo $shuai_secret
+                echo $shuai_repo_secret
         # steps:
         #   - name: test1
         #     uses: actions/setup-dotnet@v3
