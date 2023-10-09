@@ -1,0 +1,34 @@
+name: pack myget
+
+on: 
+    workflow_dispatch
+    
+env:
+    CONFIGURATION: 'Release'
+    DOTNET_VERSION: '7.0.x'
+
+jobs:
+    release:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Setup .NET
+          uses: actions/setup-dotnet@v3
+          with:
+            dotnet-version:${{env.DOTNET_VERSION}}
+        - name: GitVersioning
+          uses: dotnet/nbgv@v0.4.0
+          id: nbgv
+        - name: Pack
+          run: |
+            dotnet restore
+            dotnet build --configuration ${{ env.CONFIGURATION }} --no-restore --verbosity normal --BinaryLogger:./msbuild.binlog
+            dotnet pack --configuration ${{ env.CONFIGURATION }} --output ./out --no-build --verbosity normal
+            rm ./out/*.snupkg
+        - name: Push MyGet package
+          run: dotnet nuget push out/*.nuget --api-key ${{secrets.MYGET_TOKEN}} --source https://www.myget.org/F/shine/api/v3/index.json
+
+        # - name: Upload Package
+        #   uses: actions/upload-artifact@v3
+        #   with: 
+        #     name: shine-packages
+        #     path: ./out
