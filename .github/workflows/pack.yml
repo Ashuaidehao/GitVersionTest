@@ -27,23 +27,18 @@ jobs:
             dotnet restore
             dotnet build --configuration ${{ env.CONFIGURATION }} --no-restore --verbosity normal --BinaryLogger:./msbuild.binlog
             dotnet pack --configuration ${{ env.CONFIGURATION }} --output ./out --no-build --verbosity normal
-        - name: Upload Package
-          uses: actions/upload-artifact@v3
-          with: 
-            name: shine-packages
-            path: ./out
-        - name: Download Package
-          uses: actions/download-artifact@v3
-          with:
-            name: shine-packages
-            path: ./packs
-        - name: Show files
-          run: ls
-        - name: Push MyGet package
-          run: dotnet nuget push ./packs/*.nuget --api-key ${{secrets.MYGET_TOKEN}} --source https://www.myget.org/F/shine/api/v3/index.json
-
         # - name: Upload Package
         #   uses: actions/upload-artifact@v3
         #   with: 
         #     name: shine-packages
         #     path: ./out
+        # - name: Download Package
+        #   uses: actions/download-artifact@v3
+        #   with:
+        #     name: shine-packages
+        #     path: ./packs
+        # - name: Show files
+        #   run: ls
+        - name: Push MyGet package
+          run: dotnet nuget push ./out/*.nupkg --api-key ${{secrets.MYGET_TOKEN}} --source https://www.myget.org/F/shine/api/v3/index.json
+
