@@ -1,4 +1,4 @@
-name: pack myget
+name: Pack to Myget
 
 on: 
     workflow_dispatch
