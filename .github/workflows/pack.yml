@@ -27,7 +27,6 @@ jobs:
             dotnet restore
             dotnet build --configuration ${{ env.CONFIGURATION }} --no-restore --verbosity normal --BinaryLogger:./msbuild.binlog
             dotnet pack --configuration ${{ env.CONFIGURATION }} --output ./out --no-build --verbosity normal
-            rm ./out/*.snupkg
         - name: Push MyGet package
           run: dotnet nuget push out/*.nuget --api-key ${{secrets.MYGET_TOKEN}} --source https://www.myget.org/F/shine/api/v3/index.json
 
