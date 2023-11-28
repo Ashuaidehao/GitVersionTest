@@ -14,6 +14,7 @@ on:
 
 env:
     DOTNET_VERSION: '7.0.x'
+    PUSH_ON_MASTET: ${{github.event_name == 'push' && github.ref == 'refs/heads/master'}}
 
 
 jobs:
@@ -33,6 +34,6 @@ jobs:
               env:
                 shuai_secret: ${{ secrets.SHUAI_REPO_SECRET}}
               if: |
-                github.event_name == 'push' && github.ref == 'refs/heads/master'
+                ${{env.PUSH_ON_MASTET}}
               run : |
                 echo "shuai_secret: $shuai_secret"
