@@ -47,6 +47,6 @@ jobs:
                 echo ${{env.PUSH_ON_MASTET}}
                 echo "shuai_secret: $shuai_secret"
             - name: test2
-              if: env.flag
+              if: ${{ fromJSON(env.flag) }}
               run: |
                 echo "test2:${{env.flag}}"
