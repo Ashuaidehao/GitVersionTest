@@ -33,7 +33,7 @@ jobs:
             #   uses: actions/setup-dotnet@v3
               env:
                 shuai_secret: ${{ secrets.SHUAI_REPO_SECRET}}
-              if: ${{env.PUSH_ON_MASTET}}
+              if: ${{env.PUSH_ON_MASTET=='false'}}
               run : |
                 echo ${{env.PUSH_ON_MASTET}}
                 echo "shuai_secret: $shuai_secret"
