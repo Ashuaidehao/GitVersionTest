@@ -29,6 +29,13 @@ jobs:
                 echo "Hello world!"
                 echo $shuai_secret
                 echo $shuai_repo_secret
+            - name: Set Conditon to Env
+              run: |
+                if ${PUSH_ON_MASTET}==true;then
+                  echo 'flag=true' >> $GITHUB_ENV
+                else
+                  echo 'flag=false'>> $GITHUB_ENV
+                fi
             - name: test1
             #   uses: actions/setup-dotnet@v3
               env:
@@ -37,3 +44,7 @@ jobs:
               run : |
                 echo ${{env.PUSH_ON_MASTET}}
                 echo "shuai_secret: $shuai_secret"
+            - name: test2
+              if: env.flag
+              run: |
+                echo "test2"
