@@ -32,5 +32,7 @@ jobs:
             #   uses: actions/setup-dotnet@v3
               env:
                 shuai_secret: ${{ secrets.SHUAI_REPO_SECRET}}
+              if: |
+                github.event_name == 'push' && github.ref == 'refs/heads/master'
               run : |
                 echo "shuai_secret: $shuai_secret"
