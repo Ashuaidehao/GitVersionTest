@@ -36,4 +36,5 @@ jobs:
               if: |
                 ${{env.PUSH_ON_MASTET}}
               run : |
+                echo ${{env.PUSH_ON_MASTET}}
                 echo "shuai_secret: $shuai_secret"
