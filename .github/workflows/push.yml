@@ -31,10 +31,12 @@ jobs:
                 echo $shuai_repo_secret
             - name: Set Conditon to Env
               run: |
-                if ${PUSH_ON_MASTET}==true;then
-                  echo 'flag=true' >> $GITHUB_ENV
+                if ${PUSH_ON_MASTET} == true; then
+                  echo "flag=true" >> $GITHUB_ENV
+                  echo "flag set to true"
                 else
-                  echo 'flag=false'>> $GITHUB_ENV
+                  echo "flag=false" >> $GITHUB_ENV
+                  echo "flag set to false"
                 fi
             - name: test1
             #   uses: actions/setup-dotnet@v3
@@ -47,4 +49,4 @@ jobs:
             - name: test2
               if: env.flag
               run: |
-                echo "test2"
+                echo "test2:${{env.flag}}"
